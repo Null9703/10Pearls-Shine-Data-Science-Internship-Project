@@ -82,3 +82,17 @@ Run simpler SQL queries to calculate descriptive statistics and more.
 Run more advanced queries such as using Window Functions.
 ### Step 5
 Report your findings for this module.
+
+## Module 4: Model Deployment and API Consumption
+Goal: Develop a frontend web application for your model using Flask. Furthermore, develop an API endpoint as well.
+### Step 1
+Load the model, its scaler, and polynomial features objects from pickle files.
+### Step 2
+Develop API and web application using Flask.
+### Step 3
+Prepare an html page to display as the frontend for your web application.
+### Step 4
+Testing web application frontend to make predictions.
+### Step 5
+Testing API using Postman
+![image](https://github.com/user-attachments/assets/b7da4ea5-9801-4641-9c20-768c721d2bc8)

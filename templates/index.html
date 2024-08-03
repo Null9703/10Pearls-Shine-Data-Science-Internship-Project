@@ -3,18 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Churn Predictor</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body class = 'bg-dark'>
-    <div class = "container-fluid text-info">
-        <h1>10Pearls Data Science: Customer Churn Predictor</h1>
-        <hr class = 'bg-secondary'>
-        <br>
-        <div class = "lead">
-            <p>Provide the necessary info to predict whether a given customer will churn:</p>
-
-        </div>
+<body>
+    <div class="container mt-5">
+        <h2>Customer Churn Prediction</h2>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="SeniorCitizen">Senior Citizen</label>
+                <select class="form-control" id="SeniorCitizen" name="SeniorCitizen">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Partner">Partner</label>
+                <select class="form-control" id="Partner" name="Partner">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Dependents">Dependents</label>
+                <select class="form-control" id="Dependents" name="Dependents">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tenure">Tenure</label>
+                <input type="number" class="form-control" id="tenure" name="tenure">
+            </div>
+            <div class="form-group">
+                <label for="PhoneService">Phone Service</label>
+                <select class="form-control" id="PhoneService" name="PhoneService">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="MultipleLines">Multiple Lines</label>
+                <select class="form-control" id="MultipleLines" name="MultipleLines">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No phone service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InternetService">Internet Service</label>
+                <select class="form-control" id="InternetService" name="InternetService">
+                    <option>DSL</option>
+                    <option>Fiber optic</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OnlineSecurity">Online Security</label>
+                <select class="form-control" id="OnlineSecurity" name="OnlineSecurity">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OnlineBackup">Online Backup</label>
+                <select class="form-control" id="OnlineBackup" name="OnlineBackup">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="DeviceProtection">Device Protection</label>
+                <select class="form-control" id="DeviceProtection" name="DeviceProtection">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TechSupport">Tech Support</label>
+                <select class="form-control" id="TechSupport" name="TechSupport">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="StreamingTV">Streaming TV</label>
+                <select class="form-control" id="StreamingTV" name="StreamingTV">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="StreamingMovies">Streaming Movies</label>
+                <select class="form-control" id="StreamingMovies" name="StreamingMovies">
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Contract">Contract</label>
+                <select class="form-control" id="Contract" name="Contract">
+                    <option>Month-to-month</option>
+                    <option>One year</option>
+                    <option>Two year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PaperlessBilling">Paperless Billing</label>
+                <select class="form-control" id="PaperlessBilling" name="PaperlessBilling">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PaymentMethod">Payment Method</label>
+                <select class="form-control" id="PaymentMethod" name="PaymentMethod">
+                    <option>Electronic check</option>
+                    <option>Mailed check</option>
+                    <option>Bank transfer (automatic)</option>
+                    <option>Credit card (automatic)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="MonthlyCharges">Monthly Charges</label>
+                <input type="number" step="0.01" class="form-control" id="MonthlyCharges" name="MonthlyCharges">
+            </div>
+            <div class="form-group">
+                <label for="TotalCharges">Total Charges</label>
+                <input type="number" step="0.01" class="form-control" id="TotalCharges" name="TotalCharges">
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        {% if prediction %}
+            <div class="mt-4 alert alert-info">
+                <strong>Prediction:</strong> {{ prediction }}
+            </div>
+        {% endif %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

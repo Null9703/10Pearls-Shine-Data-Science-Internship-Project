@@ -93,6 +93,7 @@ Develop API and web application using Flask.
 Prepare an html page to display as the frontend for your web application.
 ### Step 4
 Testing web application frontend to make predictions.
+![image](https://github.com/user-attachments/assets/324b1a2c-824c-4324-a389-09818ca02905)
 ### Step 5
 Testing API using Postman
 ![image](https://github.com/user-attachments/assets/b7da4ea5-9801-4641-9c20-768c721d2bc8)

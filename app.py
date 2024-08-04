@@ -14,6 +14,14 @@ scaler = pickle.load(open('scaler.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    health_status = {
+        'status': 'healthy',
+        'message': 'Application is running'
+    }
+    return jsonify(health_status)
+
 @app.route('/predict', methods=['POST'])
 def predict():
     form_data = request.form
@@ -89,7 +97,7 @@ def predict():
     # df2.drop(drop_features, axis = 1)
     # df2.drop(['tenure^2', 'MonthlyCharges^2', 'TotalCharges^2', 'MonthlyCharges TotalCharges', 'tenure TotalCharges', 'tenure MonthlyCharges', "Churn_Yes"], axis = 1)
     
-    # Standar Scaler
+    # Standard Scaler
     df2[poly.get_feature_names_out()] = scaler.transform(df2[poly.get_feature_names_out()])
     # print(df2.dtypes)
     

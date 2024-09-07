@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40; /* Dark grey background */
+            color: #00ff00; /* Neon green text color */
+        }
+        .text-neon-blue {
+            color: #00bfff; /* Neon blue text color */
+        }
+        .form-control, .btn-primary {
+            background-color: #1c1c1c; /* Dark grey background for form elements */
+            border-color: #00ff00; /* Neon green border */
+            color: #00ff00; /* Neon green text */
+        }
+        .btn-primary {
+            border-color: #00bfff; /* Neon blue border for button */
+            color: #00bfff; /* Neon blue text */
+        }
+        .alert-info {
+            background-color: #1c1c1c; /* Dark grey background for prediction alert */
+            border-color: #00ff00; /* Neon green border */
+            color: #00ff00; /* Neon green text */
+        }
+        .alert-info strong {
+            color: #ff00ff; /* Different neon color for prediction text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="bg-dark text-light p-5 rounded">
+            <h2 class="text-neon-blue">Customer Churn Prediction</h2>
+            <form action="/predict" method="post">
+                <div class="form-group">
+                    <label for="gender" class="text-neon-blue">Gender</label>
+                    <select class="form-control" id="gender" name="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="SeniorCitizen" class="text-neon-blue">Senior Citizen</label>
+                    <select class="form-control" id="SeniorCitizen" name="SeniorCitizen">
+                        <option>0</option>
+                        <option>1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Partner" class="text-neon-blue">Partner</label>
+                    <select class="form-control" id="Partner" name="Partner">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Dependents" class="text-neon-blue">Dependents</label>
+                    <select class="form-control" id="Dependents" name="Dependents">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tenure" class="text-neon-blue">Tenure</label>
+                    <input type="number" class="form-control" id="tenure" name="tenure" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="PhoneService" class="text-neon-blue">Phone Service</label>
+                    <select class="form-control" id="PhoneService" name="PhoneService">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="MultipleLines" class="text-neon-blue">Multiple Lines</label>
+                    <select class="form-control" id="MultipleLines" name="MultipleLines">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No phone service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="InternetService" class="text-neon-blue">Internet Service</label>
+                    <select class="form-control" id="InternetService" name="InternetService">
+                        <option>DSL</option>
+                        <option>Fiber optic</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="OnlineSecurity" class="text-neon-blue">Online Security</label>
+                    <select class="form-control" id="OnlineSecurity" name="OnlineSecurity">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="OnlineBackup" class="text-neon-blue">Online Backup</label>
+                    <select class="form-control" id="OnlineBackup" name="OnlineBackup">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="DeviceProtection" class="text-neon-blue">Device Protection</label>
+                    <select class="form-control" id="DeviceProtection" name="DeviceProtection">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="TechSupport" class="text-neon-blue">Tech Support</label>
+                    <select class="form-control" id="TechSupport" name="TechSupport">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="StreamingTV" class="text-neon-blue">Streaming TV</label>
+                    <select class="form-control" id="StreamingTV" name="StreamingTV">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="StreamingMovies" class="text-neon-blue">Streaming Movies</label>
+                    <select class="form-control" id="StreamingMovies" name="StreamingMovies">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>No internet service</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Contract" class="text-neon-blue">Contract</label>
+                    <select class="form-control" id="Contract" name="Contract">
+                        <option>Month-to-month</option>
+                        <option>One year</option>
+                        <option>Two year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="PaperlessBilling" class="text-neon-blue">Paperless Billing</label>
+                    <select class="form-control" id="PaperlessBilling" name="PaperlessBilling">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="PaymentMethod" class="text-neon-blue">Payment Method</label>
+                    <select class="form-control" id="PaymentMethod" name="PaymentMethod">
+                        <option>Electronic check</option>
+                        <option>Mailed check</option>
+                        <option>Bank transfer (automatic)</option>
+                        <option>Credit card (automatic)</select>
+                </div>
+                <div class="form-group">
+                    <label for="MonthlyCharges" class="text-neon-blue">Monthly Charges</label>
+                    <input type="number" step="0.01" class="form-control" id="MonthlyCharges" name="MonthlyCharges" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="TotalCharges" class="text-neon-blue">Total Charges</label>
+                    <input type="number" step="0.01" class="form-control" id="TotalCharges" name="TotalCharges" min="0">
+                </div>
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+            {% if prediction %}
+                <div class="mt-4 alert alert-info">
+                    <strong>Prediction:</strong> {{ prediction }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
